@@ -52,7 +52,7 @@ With either a `DirectionsRoute` from `NavigationRoute` or two `Position` objects
 
 ## Custom Views
 
-#### `InstructionView`
+#### InstructionView
 
 You also have the option to add the custom `View`s used in the turn-by-turn UI to your own XML.
 The top `View` that displays the maneuver image, instruction text, and sound button is called `InstructionView`.
@@ -71,7 +71,7 @@ navigation.addProgressChangeListener(instructionView);
 navigation.addOffRouteListener(instructionView);
 ```
 
-#### `NavigationMapRoute`
+#### NavigationMapRoute
 
 You can use `NavigationMapRoute` to draw the route line on your map.  Instantiate it with a
 `MapView` and `MapboxMap`, then add a `DirectionsRoute` from our Directions API.  The `DirectionsRoute` will automatically be added (even in off-route scenarios) if you instantiate with `MapboxNavigation`.  You can also style the route with a given style:

@@ -5,6 +5,8 @@ sideNavSections:
   - title: "Install the Navigation UI SDK"
   - title: "Launch the UI"
   - title: "Custom Views"
+prependJs:
+  - "import { NAVIGATION_VERSION } from '../../../constants';"
 ---
 
 Mapbox Navigation gives you all the tools that you need to add turn-by-turn navigation to your apps.

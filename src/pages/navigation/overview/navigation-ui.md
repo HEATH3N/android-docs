@@ -4,6 +4,7 @@ description: "Mapbox Android Navigation SDK Drop-in UI"
 sideNavSections:
   - title: "Install the Navigation UI SDK"
   - title: "Launch the UI"
+  - title: "Custom Views"
 ---
 
 Mapbox Navigation gives you all the tools you need to add turn-by-turn navigation to your apps.
@@ -31,3 +32,67 @@ dependencies {
 ```
 
 ## Launch the UI
+
+With either a `DirectionsRoute` from `NavigationRoute` or two `Position`s (origin and destination), you can launch the UI with `NavigationLauncher` from within your `Activity`:
+
+```java
+ Position origin = Position.fromCoordinates(-77.03613, 38.90992);
+ Position destination = Position.fromCoordinates(-77.0365, 38.8977);
+
+ // Pass in your Amazon Polly pool id for speech synthesis using Amazon Polly
+ // Set to null to use the default Android speech synthesizer
+ String awsPoolId = "your_cognito_pool_id";
+
+ boolean simulateRoute = true;
+
+ // Call this method with Context from within an Activity
+ NavigationLauncher.startNavigation(this, origin, destination,
+   awsPoolId, simulateRoute);
+```
+
+## Custom Views
+
+#### `InstructionView`
+
+You also have the option to add the custom `View`s used in the turn-by-turn UI to your own XML.
+The top `View` that displays the maneuver image, instruction text, and sound button is called `InstructionView`.
+
+```xml
+<com.mapbox.services.android.navigation.ui.v5.instruction.InstructionView
+        android:id="@+id/instructionView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+```
+
+Once inflated, in your `Activity`, you can add the `InstructionView` as a `ProgressChangeListener` / `OffRouteListener`.  Once you start navigation, the progress data will begin populating the `View`.
+
+```java
+navigation.addProgressChangeListener(instructionView);
+navigation.addOffRouteListener(instructionView);
+```
+
+#### `NavigationMapRoute`
+
+You can use `NavigationMapRoute` to draw the route line on your map.  Instantiate it with a
+`MapView` and `MapboxMap`, then add a `DirectionsRoute` from our Directions API.  If you instantiate with `MapboxNavigation`, the `DirectionsRoute` will automatically be added (even in off-route scenarios).  You can also style the route with a given style:
+
+```java
+NavigationMapRoute mapRoute = new NavigationMapRoute(MapboxNavigation navigation, MapView mapView,
+                                                     MapboxMap mapboxMap, int styleRes);
+
+```
+
+The given style will determine route color, congestion colors, and the route scale:
+
+```xml
+<style name="NavigationMapRoute">
+    <!-- Colors -->
+    <item name="routeColor">@color/mapbox_navigation_route_layer_blue</item>
+    <item name="routeModerateCongestionColor">@color/mapbox_navigation_route_layer_congestion_yellow</item>
+    <item name="routeSevereCongestionColor">@color/mapbox_navigation_route_layer_congestion_red</item>
+    <item name="routeShieldColor">@color/mapbox_navigation_route_shield_layer_color</item>
+
+    <!-- Scales -->
+    <item name="routeScale">1.0</item>
+</style>
+```

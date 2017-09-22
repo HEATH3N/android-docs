@@ -1,5 +1,5 @@
 ---
-title: "Navigation Turn-By-Turn UI"
+title: "Navigation turn-by-turn UI"
 description: "Mapbox Android Navigation SDK Drop-in UI"
 sideNavSections:
   - title: "Install the Navigation UI SDK"
@@ -7,7 +7,7 @@ sideNavSections:
   - title: "Custom Views"
 ---
 
-Mapbox Navigation gives you all the tools you need to add turn-by-turn navigation to your apps.
+Mapbox Navigation gives you all the tools that you need to add turn-by-turn navigation to your apps.
 
 Get up and running in a few minutes with our drop-in turn-by-turn navigation, or build a more custom turn-by-turn navigation app with our UI components.
 
@@ -15,9 +15,7 @@ Get up and running in a few minutes with our drop-in turn-by-turn navigation, or
 
 ## Install the Navigation UI SDK
 
-Before developing your app with the Navigation UI components, you'll need to add the SDK as a dependency.  This dependency is different from the one used to compile the core Navigation SDK,
-but will still include everything from the core library. Note that while we show how to insert the stable version of the SDK inside your project, you can also use the nightly
-build/snapshot or the beta version if one is available. You can find the dependency given below in the MavenCentral repository.
+Before developing your app with the Navigation UI components, you'll need to add the SDK as a dependency.  This dependency is different from the one used to compile the core Navigation SDK, but it will still include everything from the core library. Note that while we show how to insert the stable version of the SDK inside your project, you can also use the nightly build/snapshot or the beta version if one is available. You can find the dependency given below in the MavenCentral repository.
 
 ```groovy
 repositories {
@@ -33,7 +31,7 @@ dependencies {
 
 ## Launch the UI
 
-With either a `DirectionsRoute` from `NavigationRoute` or two `Position`s (origin and destination), you can launch the UI with `NavigationLauncher` from within your `Activity`:
+With either a `DirectionsRoute` from `NavigationRoute` or two `Position` objects (origin and destination), you can launch the UI with `NavigationLauncher` from within your `Activity`:
 
 ```java
  Position origin = Position.fromCoordinates(-77.03613, 38.90992);
@@ -64,7 +62,7 @@ The top `View` that displays the maneuver image, instruction text, and sound but
         android:layout_height="wrap_content"/>
 ```
 
-Once inflated, in your `Activity`, you can add the `InstructionView` as a `ProgressChangeListener` / `OffRouteListener`.  Once you start navigation, the progress data will begin populating the `View`.
+Once inflated in your `Activity`, you can add the `InstructionView` as a `ProgressChangeListener` / `OffRouteListener`.  Once you start navigation, the progress data will begin populating the `View`.
 
 ```java
 navigation.addProgressChangeListener(instructionView);
@@ -74,7 +72,7 @@ navigation.addOffRouteListener(instructionView);
 #### `NavigationMapRoute`
 
 You can use `NavigationMapRoute` to draw the route line on your map.  Instantiate it with a
-`MapView` and `MapboxMap`, then add a `DirectionsRoute` from our Directions API.  If you instantiate with `MapboxNavigation`, the `DirectionsRoute` will automatically be added (even in off-route scenarios).  You can also style the route with a given style:
+`MapView` and `MapboxMap`, then add a `DirectionsRoute` from our Directions API.  The `DirectionsRoute` will automatically be added (even in off-route scenarios) if you instantiate with `MapboxNavigation`.  You can also style the route with a given style:
 
 ```java
 NavigationMapRoute mapRoute = new NavigationMapRoute(MapboxNavigation navigation, MapView mapView,

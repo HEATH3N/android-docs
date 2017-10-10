@@ -5,6 +5,7 @@ sideNavSections:
   - title: "Markers"
   - title: "Info window"
   - title: "Polyline and polygons"
+  - title: "Bubble annotations"
 prependJs:
   - "import { Floater } from '../../../components/floater';"
 ---
@@ -128,3 +129,7 @@ mapboxMap.addPolygon(new PolygonOptions()
   .addAll(polygon)
   .fillColor(Color.parseColor("#3bb2d0")));
 ```
+
+## Bubble annotations
+
+Maps SDK version 5.1.0 introduced "Bubble annotations", which 
